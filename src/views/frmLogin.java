@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package form;
+package views;
 import connection.conn;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -52,7 +52,7 @@ public class frmLogin extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        txtUsername = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         txtPassword = new javax.swing.JPasswordField();
@@ -67,9 +67,15 @@ public class frmLogin extends javax.swing.JFrame {
         jLabel2.setText("Password");
 
         jButton1.setText("Login");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+        jButton1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton1KeyPressed(evt);
             }
         });
 
@@ -83,7 +89,7 @@ public class frmLogin extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(22, 22, 22)
@@ -98,7 +104,7 @@ public class frmLogin extends javax.swing.JFrame {
                 .addContainerGap(197, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -113,17 +119,16 @@ public class frmLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String username = txtUsername.getText();
         try {
-            if(isEmpty(txtUsername.getText(), String.valueOf(txtPassword.getPassword()))){
+            if(isEmpty(txtEmail.getText(), String.valueOf(txtPassword.getPassword()))){
                 JOptionPane.showMessageDialog(this, "USERNAME ATAU PASSWORD MASIH KOSONG!");
             }else{
-                sql = "SELECT * FROM users WHERE username='" + txtUsername.getText() + "' AND password='" + String.valueOf(txtPassword.getPassword()) + "'";
+                sql = "SELECT * FROM users WHERE email='" + txtEmail.getText() + "' AND password='" + String.valueOf(txtPassword.getPassword()) + "'";
                 rs = stat.executeQuery(sql);
                 if(rs.next()){
-                    if(txtUsername.getText().equals(rs.getString("username")) && String.valueOf(txtPassword.getPassword()).equals(rs.getString("password"))){
+                    if(txtEmail.getText().equals(rs.getString("email")) && String.valueOf(txtPassword.getPassword()).equals(rs.getString("password"))){
                         iduser = Integer.valueOf(rs.getString("id"));
-                        JOptionPane.showMessageDialog(null, "SELAMAT DATANG " + rs.getString("nama_lengkap") + " DI APLIKASI KAMI!");
+                        JOptionPane.showMessageDialog(null, "SELAMAT DATANG " + rs.getString("name") + " DI APLIKASI KAMI!");
                         frmMainMenu frmMenuUtama = new frmMainMenu();
                         
                         frmMenuUtama.setVisible(true);
@@ -134,8 +139,35 @@ public class frmLogin extends javax.swing.JFrame {
                 }
             }
         } catch (Exception e) {
+            System.out.println(e.toString());
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyPressed
+        // TODO add your handling code here:
+        try {
+            if(isEmpty(txtEmail.getText(), String.valueOf(txtPassword.getPassword()))){
+                JOptionPane.showMessageDialog(this, "USERNAME ATAU PASSWORD MASIH KOSONG!");
+            }else{
+                sql = "SELECT * FROM users WHERE email='" + txtEmail.getText() + "' AND password='" + String.valueOf(txtPassword.getPassword()) + "'";
+                rs = stat.executeQuery(sql);
+                if(rs.next()){
+                    if(txtEmail.getText().equals(rs.getString("email")) && String.valueOf(txtPassword.getPassword()).equals(rs.getString("password"))){
+                        iduser = Integer.valueOf(rs.getString("id"));
+                        JOptionPane.showMessageDialog(null, "SELAMAT DATANG " + rs.getString("name") + " DI APLIKASI KAMI!");
+                        frmMainMenu frmMenuUtama = new frmMainMenu();
+                        
+                        frmMenuUtama.setVisible(true);
+                        dispose();
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(null, "USERNAME ATAU PASSWORD SALAH!");
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+    }//GEN-LAST:event_jButton1KeyPressed
 
     /**
      * @param args the command line arguments
@@ -176,8 +208,8 @@ public class frmLogin extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JTextField txtEmail;
     private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 
 }
