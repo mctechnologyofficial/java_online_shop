@@ -73,8 +73,8 @@ public class frmMainMenu extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         menuSupplier = new javax.swing.JMenu();
         menuBarang = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        subMenuBarang = new javax.swing.JMenuItem();
+        subMenuDetailBarang = new javax.swing.JMenuItem();
         menuPembelian = new javax.swing.JMenu();
         menuCustomer = new javax.swing.JMenu();
         menuPenjualan = new javax.swing.JMenu();
@@ -102,11 +102,21 @@ public class frmMainMenu extends javax.swing.JFrame {
         menuBarang.setText("Barang");
         menuBarang.setName(""); // NOI18N
 
-        jMenuItem2.setText("Data Barang");
-        menuBarang.add(jMenuItem2);
+        subMenuBarang.setText("Data Barang");
+        subMenuBarang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                subMenuBarangMouseClicked(evt);
+            }
+        });
+        subMenuBarang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                subMenuBarangActionPerformed(evt);
+            }
+        });
+        menuBarang.add(subMenuBarang);
 
-        jMenuItem3.setText("Data Detail Barang");
-        menuBarang.add(jMenuItem3);
+        subMenuDetailBarang.setText("Data Detail Barang");
+        menuBarang.add(subMenuDetailBarang);
 
         jMenuBar1.add(menuBarang);
 
@@ -155,6 +165,19 @@ public class frmMainMenu extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_menuSupplierMouseClicked
 
+    private void subMenuBarangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_subMenuBarangMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_subMenuBarangMouseClicked
+
+    private void subMenuBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuBarangActionPerformed
+        // TODO add your handling code here:
+        frmBarang formBarang = new frmBarang();
+        formBarang.setVisible(true);
+        dispose();
+        
+    }//GEN-LAST:event_subMenuBarangActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -193,13 +216,13 @@ public class frmMainMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenu menuBarang;
     private javax.swing.JMenu menuCustomer;
     private javax.swing.JMenu menuFile;
     private javax.swing.JMenu menuPembelian;
     private javax.swing.JMenu menuPenjualan;
     private javax.swing.JMenu menuSupplier;
+    private javax.swing.JMenuItem subMenuBarang;
+    private javax.swing.JMenuItem subMenuDetailBarang;
     // End of variables declaration//GEN-END:variables
 }

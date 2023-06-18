@@ -35,12 +35,16 @@
             <Property name="name" type="java.lang.String" value="" noResource="true"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
+            <MenuItem class="javax.swing.JMenuItem" name="subMenuBarang">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Data Barang"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="subMenuBarangMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="subMenuBarangActionPerformed"/>
+              </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
+            <MenuItem class="javax.swing.JMenuItem" name="subMenuDetailBarang">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Data Detail Barang"/>
               </Properties>

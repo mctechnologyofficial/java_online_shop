@@ -131,10 +131,15 @@ public class frmSupplier extends javax.swing.JFrame {
         btnBatal = new javax.swing.JButton();
         btnSimpan = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Form Supplier");
         setFocusCycleRoot(false);
         setType(java.awt.Window.Type.POPUP);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jLabel2.setText("Nomor Telepon");
 
@@ -293,6 +298,13 @@ public class frmSupplier extends javax.swing.JFrame {
             System.out.println("Error : " + e.toString());
         }
     }//GEN-LAST:event_btnHapusActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        frmMainMenu formMainMenu = new frmMainMenu();
+        formMainMenu.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
